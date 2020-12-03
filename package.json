@@ -1,0 +1,29 @@
+{
+  "name": "pd_s",
+  "version": "0.1.0",
+  "description": "Server for peaceful dom project",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrkelder/pd_s.git"
+  },
+  "keywords": [
+    "hoodies",
+    "sweetshirts",
+    "T-shirts"
+  ],
+  "author": "Vlad Ageev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrkelder/pd_s/issues"
+  },
+  "homepage": "https://github.com/mrkelder/pd_s#readme",
+  "dependencies": {
+    "fastify": "^3.9.1",
+    "fastify-static": "^3.3.0",
+    "mongodb": "^3.6.3"
+  }
+}
