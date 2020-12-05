@@ -2,9 +2,10 @@
   "name": "pd_s",
   "version": "0.1.0",
   "description": "Server for peaceful dom project",
-  "main": "app.js",
+  "main": "./build/app.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "ts": "tsc --importHelpers -w"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,10 @@
   "dependencies": {
     "fastify": "^3.9.1",
     "fastify-static": "^3.3.0",
-    "mongodb": "^3.6.3"
+    "mongodb": "^3.6.3",
+    "tslib": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.10"
   }
 }
