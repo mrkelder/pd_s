@@ -15,3 +15,6 @@ server.register(fastify_static_1.default, {
     prefix: '/static/'
 });
 server.listen(8080);
+server.ready(() => {
+    console.log(`Listening at http://localhost:8080`);
+});
