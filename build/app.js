@@ -6,15 +6,16 @@ const fastify_static_1 = tslib_1.__importDefault(require("fastify-static"));
 const path_1 = tslib_1.__importDefault(require("path"));
 const fs_1 = tslib_1.__importDefault(require("fs"));
 const routes_1 = tslib_1.__importDefault(require("./api/routes"));
+const port = process.env.PORT || 8080;
 const server = fastify_1.default({
     ignoreTrailingSlash: true
 });
 server.register(routes_1.default, { fs: fs_1.default, path: path_1.default });
 server.register(fastify_static_1.default, {
-    root: path_1.default.resolve('./static'),
-    prefix: '/static/'
+    root: path_1.default.resolve("./static"),
+    prefix: "/static/"
 });
-server.listen(8080);
+server.listen(port);
 server.ready(() => {
-    console.log(`Listening at http://localhost:8080`);
+    console.log(`Listening at http://localhost:${port}`);
 });

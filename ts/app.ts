@@ -1,8 +1,10 @@
-import fastify from 'fastify';
-import fastify_static from 'fastify-static';
-import path from 'path';
-import fs from 'fs';
-import routes from './api/routes';
+import fastify from "fastify";
+import fastify_static from "fastify-static";
+import path from "path";
+import fs from "fs";
+import routes from "./api/routes";
+
+const port = process.env.PORT || 8080;
 
 const server = fastify({
   ignoreTrailingSlash: true
@@ -10,12 +12,12 @@ const server = fastify({
 
 server.register(routes, { fs, path });
 server.register(fastify_static, {
-  root: path.resolve('./static'),
-  prefix: '/static/'
+  root: path.resolve("./static"),
+  prefix: "/static/"
 });
 
-server.listen(8080);
+server.listen(port);
 
 server.ready(() => {
-  console.log(`Listening at http://localhost:8080`);
+  console.log(`Listening at http://localhost:${port}`);
 });

@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "eqeqeq": "error",
+    "no-await-in-loop": "warn",
+    "default-case": "warn",
+    "default-param-last": "error",
+    "dot-notation": "error",
+    "no-constructor-return": "error",
+    "no-empty-function": "warn",
+    "no-magic-numbers": "warn",
+    "no-new": "error",
+    "no-self-compare": "error"
+  }
+}

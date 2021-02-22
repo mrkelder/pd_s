@@ -1,0 +1,10 @@
+node_modules
+build
+static
+.eslintrc.json
+.gitignore
+.prettierrc.json
+nodemon.json
+package-lock.json
+package.json
+tsconfig.json

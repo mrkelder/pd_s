@@ -4,8 +4,10 @@
   "description": "Server for peaceful dom project",
   "main": "./build/app.js",
   "scripts": {
-    "test": "test",
-    "ts": "tsc --importHelpers -w"
+    "run": "npx nodemon",
+    "ts": "tsc --watch",
+    "eslint": "npx eslint ts/**",
+    "pretty": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -26,9 +28,15 @@
     "fastify": "^3.9.1",
     "fastify-static": "^3.3.0",
     "mongodb": "^3.6.3",
-    "tslib": "^2.0.3"
+    "tslib": "^2.0.3",
+    "typescript": "^4.1.5"
   },
   "devDependencies": {
-    "@types/node": "^14.14.10"
+    "@types/node": "^14.14.10",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "eslint": "^7.20.0",
+    "nodemon": "^2.0.7",
+    "prettier": "2.2.1"
   }
 }
