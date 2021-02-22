@@ -1,14 +1,10 @@
-import { FastifyRequest, FastifyReply, FastifyInstance } from "fastify";
+import { FastifyInstance } from "fastify";
+import itemRoute from "./basic";
+import basicRoute from "./item";
 
-async function router(server: FastifyInstance, { path: { resolve }, fs }: any): Promise<void> {
-  server.get("/", (req: FastifyRequest, reply: FastifyReply) => {
-    fs.readFile(resolve("./package.json"), "utf8", (err: Error, data: string) => {
-      reply.send(`Welcome to PD server ${JSON.parse(data).version}`);
-    });
-  });
-}
-
-if (2 == 2) {
+async function router(server: FastifyInstance): Promise<void> {
+  basicRoute(server);
+  itemRoute(server);
 }
 
 export default router;
