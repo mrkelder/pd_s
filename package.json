@@ -25,7 +25,9 @@
   },
   "homepage": "https://github.com/mrkelder/pd_s#readme",
   "dependencies": {
+    "@types/mongodb": "^3.6.8",
     "fastify": "^3.9.1",
+    "fastify-cors": "^5.2.0",
     "fastify-static": "^3.3.0",
     "mongodb": "^3.6.3",
     "tslib": "^2.0.3",
