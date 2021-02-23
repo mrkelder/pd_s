@@ -7,18 +7,21 @@ function basicRoute(server) {
     server.get("/getItem", (req, reply) => {
         const total = req.query;
         const type = total.type;
-        mongodb_2.default(({ db, client }) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            let data;
-            if (type === "*")
-                data = yield db.collection("items").find({}).toArray();
-            else
-                data = yield db
-                    .collection("items")
-                    .find({ _id: new mongodb_1.ObjectID(type) })
-                    .toArray();
-            reply.send(data);
-            client.close();
-        }));
+        if (type === "*" || mongodb_1.ObjectID.isValid(type))
+            mongodb_2.default(({ db, client }) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                let data;
+                if (type === "*")
+                    data = yield db.collection("items").find({}).toArray();
+                else
+                    data = yield db
+                        .collection("items")
+                        .find({ _id: new mongodb_1.ObjectID(type) })
+                        .toArray();
+                reply.send(data);
+                client.close();
+            }));
+        else
+            reply.code(404).send("Sorry, but your request is invalid");
     });
 }
 exports.default = basicRoute;
