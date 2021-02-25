@@ -11,7 +11,6 @@ function itemRoute(server: FastifyInstance): void {
   });
 
   server.setNotFoundHandler((req: FastifyRequest, reply: FastifyReply) => {
-    // eslint-disable-next-line
     reply.code(404).send(`Sorry, but the route ${req.url} does not exist.`);
   });
 }

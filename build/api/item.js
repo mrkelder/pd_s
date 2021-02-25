@@ -7,15 +7,24 @@ function basicRoute(server) {
     server.get("/getItem", (req, reply) => {
         const total = req.query;
         const type = total.type;
+        const limit = Number(total.limit);
+        const skip = Number(total.skip);
         if (type === "*" || mongodb_1.ObjectID.isValid(type))
             mongodb_2.default(({ db, client }) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 let data;
                 if (type === "*")
-                    data = yield db.collection("items").find({}).toArray();
+                    data = yield db
+                        .collection("items")
+                        .find({})
+                        .skip(isNaN(skip) ? 0 : skip)
+                        .limit(isNaN(limit) ? 0 : limit)
+                        .toArray();
                 else
                     data = yield db
                         .collection("items")
                         .find({ _id: new mongodb_1.ObjectID(type) })
+                        .skip(isNaN(skip) ? 0 : skip)
+                        .limit(isNaN(limit) ? 0 : limit)
                         .toArray();
                 reply.send(data);
                 client.close();
