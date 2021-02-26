@@ -7,8 +7,7 @@ const fastify_cors_1 = tslib_1.__importDefault(require("fastify-cors"));
 const routes_1 = tslib_1.__importDefault(require("./api/routes"));
 const path_1 = tslib_1.__importDefault(require("path"));
 const fs_1 = tslib_1.__importDefault(require("fs"));
-const defaultPort = 8080;
-const port = process.env.PORT || defaultPort;
+const port = process.env.PORT || 8080;
 const server = fastify_1.default({
     ignoreTrailingSlash: true
 });

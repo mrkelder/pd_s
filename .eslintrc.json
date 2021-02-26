@@ -23,7 +23,6 @@
     "dot-notation": "error",
     "no-constructor-return": "error",
     "no-empty-function": "warn",
-    "no-magic-numbers": "warn",
     "no-new": "error",
     "no-self-compare": "error"
   }

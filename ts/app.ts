@@ -7,8 +7,7 @@ import fs from "fs";
 
 // TODO: Deal with CORS when deploying
 
-const defaultPort = 8080;
-const port = process.env.PORT || defaultPort;
+const port = process.env.PORT || 8080;
 
 const server = fastify({
   ignoreTrailingSlash: true
