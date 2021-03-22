@@ -36,6 +36,15 @@ function basicRoute(server: FastifyInstance): void {
       });
     else reply.code(404).send("Sorry, but your request is invalid");
   });
+
+  server.put("/addBought", (req: FastifyRequest, reply: FastifyReply) => {
+    const items = req.body as string[];
+    mongodbFunc(async ({ client, db }) => {
+      await db.collection("items").updateMany({ _id: { $in: items.map(id => new ObjectID(id)) } }, { $inc: { bought: 1 } });
+      reply.send("Okay");
+      client.close();
+    });
+  });
 }
 
 export default basicRoute;

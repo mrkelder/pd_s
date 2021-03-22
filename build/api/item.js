@@ -32,5 +32,13 @@ function basicRoute(server) {
         else
             reply.code(404).send("Sorry, but your request is invalid");
     });
+    server.put("/addBought", (req, reply) => {
+        const items = req.body;
+        mongodb_2.default(({ client, db }) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+            yield db.collection("items").updateMany({ _id: { $in: items.map(id => new mongodb_1.ObjectID(id)) } }, { $inc: { bought: 1 } });
+            reply.send("Okay");
+            client.close();
+        }));
+    });
 }
 exports.default = basicRoute;

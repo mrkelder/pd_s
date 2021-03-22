@@ -5,7 +5,7 @@ const dotenv_1 = require("dotenv");
 const stripe_1 = tslib_1.__importDefault(require("stripe"));
 dotenv_1.config();
 const stripe = new stripe_1.default(process.env.STRIPE, {
-    apiVersion: '2020-08-27',
+    apiVersion: "2020-08-27"
 });
 function payment(fastify) {
     return tslib_1.__awaiter(this, void 0, void 0, function* () {
@@ -15,13 +15,12 @@ function payment(fastify) {
             const { description } = total;
             const paymentIntent = yield stripe.paymentIntents.create({
                 amount: Math.ceil(price),
-                currency: 'cad',
-                payment_method_types: ['card'],
-                description,
+                currency: "cad",
+                payment_method_types: ["card"],
+                description
             });
             reply.send(paymentIntent.client_secret);
         }));
     });
 }
-;
 exports.default = payment;
