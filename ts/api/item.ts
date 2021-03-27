@@ -40,7 +40,7 @@ function basicRoute(server: FastifyInstance): void {
   server.put("/addBought", (req: FastifyRequest, reply: FastifyReply) => {
     const items = req.body as string[];
     mongodbFunc(async ({ client, db }) => {
-      await db.collection("items").updateMany({ _id: { $in: items.map(id => new ObjectID(id)) } }, { $inc: { bought: 1 } });
+      await db.collection("items").updateMany({ _id: { $in: items.filter(id => !/unique/.test(id)).map(id => new ObjectID(id)) } }, { $inc: { bought: 1 } });
       reply.send("Okay");
       client.close();
     });
