@@ -1,4 +1,6 @@
 node_modules
 .env
 static/*
+!static/templates/
+static/templates/*.png
 !.gitkeep

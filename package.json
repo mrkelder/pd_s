@@ -25,8 +25,11 @@
   },
   "homepage": "https://github.com/mrkelder/pd_s#readme",
   "dependencies": {
+    "@types/fabric": "^4.2.3",
     "@types/mongodb": "^3.6.8",
+    "canvas": "^2.7.0",
     "dotenv": "^8.2.0",
+    "fabric": "^4.3.1",
     "fastify": "^3.9.1",
     "fastify-cors": "^5.2.0",
     "fastify-static": "^3.3.0",

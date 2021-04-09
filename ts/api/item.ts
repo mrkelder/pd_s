@@ -1,12 +1,26 @@
 import { FastifyRequest, FastifyReply, FastifyInstance } from "fastify";
 import { ObjectID } from "mongodb";
 import mongodbFunc from "../modules/mongodb";
+import { fabric } from "fabric";
+import { registerFont } from "canvas";
+import { writeFile } from "fs";
+import { join, resolve } from "path";
 
 interface StringQuery {
   type: string;
   limit: string;
   skip: string;
 }
+
+// Adding fonts
+registerFont(resolve("fonts/Righteous-Regular.ttf"), { family: "Bold" });
+registerFont(resolve("fonts/Kalam-Regular.ttf"), { family: "Cursive" });
+registerFont(resolve("fonts/Roboto-Regular.ttf"), { family: "Roboto" });
+registerFont(resolve("fonts/Hanalei-Regular.ttf"), { family: "Custom2" });
+registerFont(resolve("fonts/LongCang-Regular.ttf"), { family: "Custom3" });
+registerFont(resolve("fonts/Ranchers-Regular.ttf"), { family: "Custom4" });
+registerFont(resolve("fonts/ReggaeOne-Regular.ttf"), { family: "Custom5" });
+registerFont(resolve("fonts/Cyberpunk-Regular.ttf"), { family: "Custom6" });
 
 function basicRoute(server: FastifyInstance): void {
   server.get("/getItem", (req: FastifyRequest, reply: FastifyReply) => {
@@ -44,6 +58,36 @@ function basicRoute(server: FastifyInstance): void {
       reply.send("Okay");
       client.close();
     });
+  });
+
+  server.post("/createImgForCustom", (req: FastifyRequest, reply: FastifyReply) => {
+    function drawCanvas(elements: any, index: number, uniqueId: string) {
+      const canvas = new fabric.StaticCanvas(null, { width: 150 * 2, height: 175 * 2 });
+      canvas.backgroundColor = "#fff";
+      for (const i of elements[index]) {
+        const { fontSize, fontFamily, left, top, width, height, fill, scaleX, scaleY, angle } = i;
+        const textbox = new fabric.Textbox(i.text, {
+          fontSize,
+          left: left * 2,
+          top: top * 2,
+          width,
+          height,
+          fill,
+          scaleX: scaleX * 2,
+          scaleY: scaleY * 2,
+          angle,
+          fontFamily
+        });
+        canvas.add(textbox).renderAll();
+      }
+      const base64Data = canvas.toDataURL().replace(/^data:image\/png;base64,/, "");
+      writeFile(join(__dirname, `../../static/templates/${uniqueId}_${index}.png`), base64Data, 'base64', () => { });
+    }
+
+    const { elements, uniqueId } = req.body as any; // eslint-disable-line 
+    drawCanvas(elements, 0, uniqueId);
+    drawCanvas(elements, 1, uniqueId);
+    reply.send("Okay");
   });
 }
 
