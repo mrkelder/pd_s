@@ -1,4 +1,4 @@
-# Server of "PD" hoodie shop 
+# Server of "PD" hoodie shop
 
 **Version 0.2.0**
 

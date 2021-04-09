@@ -81,10 +81,10 @@ function basicRoute(server: FastifyInstance): void {
         canvas.add(textbox).renderAll();
       }
       const base64Data = canvas.toDataURL().replace(/^data:image\/png;base64,/, "");
-      writeFile(join(__dirname, `../../static/templates/${uniqueId}_${index}.png`), base64Data, 'base64', () => { });
+      writeFile(join(__dirname, `../../static/templates/${uniqueId}_${index}.png`), base64Data, "base64", () => {});
     }
 
-    const { elements, uniqueId } = req.body as any; // eslint-disable-line 
+    const { elements, uniqueId } = req.body as any; // eslint-disable-line
     drawCanvas(elements, 0, uniqueId);
     drawCanvas(elements, 1, uniqueId);
     reply.send("Okay");

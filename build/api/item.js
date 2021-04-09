@@ -73,7 +73,7 @@ function basicRoute(server) {
                 canvas.add(textbox).renderAll();
             }
             const base64Data = canvas.toDataURL().replace(/^data:image\/png;base64,/, "");
-            fs_1.writeFile(path_1.join(__dirname, `../../static/templates/${uniqueId}_${index}.png`), base64Data, 'base64', () => { });
+            fs_1.writeFile(path_1.join(__dirname, `../../static/templates/${uniqueId}_${index}.png`), base64Data, "base64", () => { });
         }
         const { elements, uniqueId } = req.body;
         drawCanvas(elements, 0, uniqueId);
